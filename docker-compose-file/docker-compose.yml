@@ -1,0 +1,51 @@
+name: "spring_telegram"
+
+services:
+  ngrok:
+    image: ngrok/ngrok:latest
+    command:
+      - "start"
+      - "--all"
+      - "--config"
+      - "/etc/ngrok.yml"
+    volumes:
+      - ./ngrok.yml:/etc/ngrok.yml
+    network_mode: host
+
+  backend:
+    image: backend:0.0.0
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    ports:
+      - "8181:8181"
+    depends_on:
+      - db
+    environment:
+      - SERVER_PORT= 8181
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db/spring_telegram
+    container_name: backend
+
+  db:
+    image: postgres:12.12-alpine
+    ports:
+      - "9876:5432"
+    volumes:
+      - /home/user/spring_telegram/pgdata_ci:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    container_name: db
+    restart: always
+
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "5050:80"
