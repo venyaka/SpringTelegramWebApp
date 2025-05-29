@@ -12,19 +12,19 @@ services:
       - ./ngrok.yml:/etc/ngrok.yml
     network_mode: host
 
-#  backend:
-#    image: backend:0.0.0
-#    build:
-#      context: ..
-#      dockerfile: Dockerfile
-#    ports:
-#      - "8181:8181"
-#    depends_on:
-#      - db
-#    environment:
-#      - SERVER_PORT= 8181
-#      - SPRING_DATASOURCE_URL=jdbc:postgresql://db/spring_telegram
-#    container_name: backend
+  backend:
+    image: backend:0.0.0
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    ports:
+      - "8181:8181"
+    depends_on:
+      - db
+    environment:
+      - SERVER_PORT= 8181
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db/spring_telegram
+    container_name: backend
 
   db:
     image: postgres:12.12-alpine
