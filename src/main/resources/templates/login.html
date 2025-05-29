@@ -29,7 +29,8 @@
 
 <script type="text/javascript">
     function onTelegramAuth(user) {
-        fetch(("https://02df-195-245-96-68.ngrok-free.app" + "/authorize/login"), {
+        const path = "[[${ngrokUrl}]]";
+        fetch((path + "/authorize/login"), {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(user)
