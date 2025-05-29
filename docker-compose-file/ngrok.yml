@@ -3,4 +3,4 @@ authtoken: 2xfV3vaQBmMGD9BoZzDbUcR8cCw_24hYjsCSjHQtESsNP93BR
 tunnels:
   springboot:
     proto: http
-    addr: 8080
+    addr: host.docker.internal:8181
