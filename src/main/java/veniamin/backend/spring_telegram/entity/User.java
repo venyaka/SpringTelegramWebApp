@@ -40,9 +40,6 @@ public class User implements UserDetails {
     @Column
     private String hash;
 
-    @Column(name = "token")
-    private String token;
-
     @Column(name = "is_active")
     private Boolean isActive;
 
