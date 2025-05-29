@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Личные данные пользователя</title>
+    <link href="/static/css/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+<div class="bg-white rounded-2xl shadow-lg p-8 max-w-sm text-center">
+    <img th:src="${userRespDTO.getPhotoUrl}"
+         alt="User Photo"
+         class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+
+    <h2 class="text-2xl font-bold text-gray-800 mb-1" th:text="${userRespDTO.getFirstName + ' (@' + userRespDTO.getUsername + ')'}"></h2>
+    <p class="text-sm text-gray-500 mb-4" th:text="'ID: ' + ${userRespDTO.getId}"></p>
+
+    <div class="text-left text-sm text-gray-700 space-y-1">
+        <p><span class="font-semibold">First Name:</span> <span th:text="${userRespDTO.getFirstName}"></span></p>
+        <p><span class="font-semibold">Username:</span> <span th:text="${userRespDTO.getUsername}"></span></p>
+    </div>
+</div>
+
+</body>
+</html>

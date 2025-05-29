@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Telegram WebApp Auth</title>
+    <link href="/static/css/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="p-4 bg-gray-100 ">
+<h1 class="text-3xl font-bold mb-4">Добро пожаловать!</h1>
+
+<script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="test_project_spring_telegram_bot" data-size="large" data-onauth="onTelegramAuth(user)" data-request-access="write"></script>
+<script type="text/javascript">
+    function onTelegramAuth(user) {
+        fetch(("https://723f-195-245-96-68.ngrok-free.app" + "/authorize/login"), {method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(user)})
+            .then(response => response.json())
+            .then(data => {
+                window.location.href = data.redirectUrl;
+            });
+    }
+</script>
+</body>
+</html>
