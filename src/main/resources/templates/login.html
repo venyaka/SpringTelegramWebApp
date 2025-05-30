@@ -21,7 +21,22 @@
             data-telegram-login="test_project_spring_telegram_bot"
             data-size="large"
             data-onauth="onTelegramAuth(user)"
+
             data-request-access="write"></script>
+
+    <!-- Подсказка -->
+    <div class="alert alert-info mt-3">
+        ⚠ Если в виджете появляется ошибка <strong>«Bot domain invalid»</strong>,
+        это значит, что нужно прописать ваш публичный URL в BotFather:
+        <ul class="list-unstyled mb-0">
+            <li>Перейдите в <a href="https://t.me/BotFather" target="_blank">BotFather</a></li>
+            <li>Откройте <strong>Bot Settings → Domain → Edit domain</strong></li>
+            <li>Вставьте актуальный ngrok-адрес: <code>[[${ngrok_url}]]</code></li>
+        </ul>
+    </div>
+
+    <div id="ngrokWarning" class="alert alert-warning d-none w-100 text-center"></div>
+
 </div>
 
 <!-- Bootstrap JS (optional) -->
@@ -40,6 +55,23 @@
                 window.location.href = data.redirectUrl;
             });
     }
+
+    // Проверка хоста
+    document.addEventListener("DOMContentLoaded", function () {
+        const currentHost = window.location.hostname;
+        const ngrokUrl = "[[${ngrok_url}]]"; // Thymeleaf вставит значение
+        console.log(ngrokUrl);
+        console.log(ngrokUrl);
+
+        if (currentHost === 'localhost' || currentHost === '127.0.0.1') {
+            const warningDiv = document.getElementById('ngrokWarning');
+            warningDiv.classList.remove('d-none');
+            warningDiv.innerHTML = `
+                    <strong>Внимание!</strong> Для авторизации через Telegram необходимо использовать публичный URL:
+                    <a href=${ngrokUrl} target="_blank">${ngrokUrl}</a>
+                `;
+        }
+    });
 </script>
 
 </body>
