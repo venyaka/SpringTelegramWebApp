@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import veniamin.backend.spring_telegram.constant.PathConstants;
 import veniamin.backend.spring_telegram.dto.request.TelegramAuthorizeReqDTO;
 import veniamin.backend.spring_telegram.service.AuthorizeService;
+import veniamin.backend.spring_telegram.util.NgrokFetcher;
 
 import java.util.HashMap;
 import java.util.Map;
-
 
 @Controller
 @RequiredArgsConstructor
@@ -23,12 +23,17 @@ public class AuthorizeController {
 
     private final AuthorizeService authorizeService;
 
-    @Value("${ngrok.url}")
-    private String ngrokUrl;
-
 
     @GetMapping("/login")
-    public String login(Model model) {
+    public String login(Model model) throws Exception {
+        String ngrokUrl;
+        try {
+            ngrokUrl = NgrokFetcher.getNgrokUrl();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("\n<YOUR_NGROK_URL> " + ngrokUrl + "\n");
+
         model.addAttribute("ngrok_url", ngrokUrl);
         return "login";
     }
