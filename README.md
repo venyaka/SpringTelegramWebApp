@@ -75,6 +75,17 @@ cd .\docker-compose-file\
 docker-compose --env-file ../credentials.env up -d --build
 ```
 
+
+5️⃣ **Важно!** Для работы авторизации через Telegram:
+
+* Перейдите в BotFather
+* Откройте → Bot Settings → Domain → Edit domain
+* Вставьте ваш актуальный публичный URL (ngrok-адрес)
+
+📍 **Где найти ngrok-адрес?**  
+После запуска проекта, откройте главную страницу сайта → `/` → там отображается актуальный ngrok URL.
+
+
 ---
 
 ## 📲 Как работает авторизация
