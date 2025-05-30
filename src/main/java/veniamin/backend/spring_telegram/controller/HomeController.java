@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import veniamin.backend.spring_telegram.constant.PathConstants;
 import veniamin.backend.spring_telegram.service.UserService;
+import veniamin.backend.spring_telegram.util.NgrokFetcher;
 
 
 @Controller
