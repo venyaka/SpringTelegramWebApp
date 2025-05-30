@@ -8,7 +8,8 @@ public class NgrokFetcher {
 
     public static String getNgrokUrl() throws Exception {
         RestTemplate restTemplate = new RestTemplate();
-        String response = restTemplate.getForObject("http://127.0.0.1:4040/api/tunnels", String.class);
+        String response = restTemplate.getForObject("http://host.docker.internal:4040/api/tunnels", String.class);
+//        String response = restTemplate.getForObject("http://127.0.0.1:4040/api/tunnels", String.class);
 
         ObjectMapper mapper = new ObjectMapper();
         JsonNode root = mapper.readTree(response);
