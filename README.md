@@ -31,7 +31,7 @@ git clone https://github.com/venyaka/SpringTelegramWebApp.git
 cd SpringTelegramWebApp
 ```
 
-2️⃣ **Подставь свои TELEGRAM_BOT_TOKEN и NGROK_URL в `credentials.env`**
+2️⃣ **Подставь свой TELEGRAM_BOT_TOKEN в `credentials.env`**
 ```env
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=12345
@@ -41,7 +41,6 @@ PGADMIN_DEFAULT_EMAIL=admin@admin.com
 PGADMIN_DEFAULT_PASSWORD=root
 
 TELEGRAM_BOT_TOKEN=<YOUR_TELEGRAM_BOT_TOKEN>
-NGROK_URL=<YOUR_NGROK_URL>
 ```
 
 3️⃣ **Настрой application.properties (если нужно)**
@@ -65,15 +64,26 @@ spring.jpa.hibernate.ddl-auto=update
 
 telegram.bot.token=${TELEGRAM_BOT_TOKEN}
 
-ngrok.url=${NGROK_URL}
 ```
 
 4️⃣ **Запусти Docker контейнеры**
 > Убедись, что установлен Docker и Docker Compose.
+> Убидись, что ты зарегестрирован в ngrok.
 ```bash
 cd .\docker-compose-file\
 docker-compose --env-file ../credentials.env up -d --build
 ```
+5️⃣ **Важно!** Для работы авторизации через Telegram:
+
+* Перейдите в BotFather
+* Откройте → Bot Settings → Domain → Edit domain
+* Вставьте ваш актуальный публичный URL (ngrok-адрес)
+
+📍 **Где найти ngrok-адрес?**  
+После запуска проекта, откройте главную страницу сайта → `/` → там отображается актуальный ngrok URL.
+
+
+
 5️⃣ **Важно!** Для работы авторизации через Telegram:
 
 * Перейдите в BotFather
