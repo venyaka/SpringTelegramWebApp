@@ -10,7 +10,9 @@ services:
       - "/etc/ngrok.yml"
     volumes:
       - ./ngrok.yml:/etc/ngrok.yml
-    network_mode: host
+    ports:
+      - "4040:4040"
+#    network_mode: host
 
   backend:
     image: backend:0.0.0
@@ -22,8 +24,11 @@ services:
     depends_on:
       - db
     environment:
-      - SERVER_PORT= 8181
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db/spring_telegram
+      SERVER_PORT: 8181
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db/spring_telegram
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
     container_name: backend
 
   db:
