@@ -13,7 +13,7 @@ services:
     ports:
       - "4040:4040"
     environment:
-      NGROK_TOKEN: ${NGROK_TOKEN}
+      NGROK_AUTHTOKEN: ${NGROK_TOKEN}
 #    network_mode: host
 
   backend:

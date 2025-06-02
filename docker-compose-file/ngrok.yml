@@ -1,5 +1,4 @@
 version: 2
-authtoken: ${NGROK_TOKEN}
 tunnels:
   springboot:
     proto: http
