@@ -66,6 +66,7 @@ telegram.bot.token=${TELEGRAM_BOT_TOKEN}
 
 ```
 
+
 4️⃣ **Запусти Docker контейнеры**
 > Убедись, что установлен Docker и Docker Compose.
 > Убидись, что ты зарегестрирован в ngrok.
