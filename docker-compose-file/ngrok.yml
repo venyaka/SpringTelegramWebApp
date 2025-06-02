@@ -1,6 +1,7 @@
 version: 2
-authtoken: 2xfV3vaQBmMGD9BoZzDbUcR8cCw_24hYjsCSjHQtESsNP93BR
+authtoken: ${NGROK_TOKEN}
 tunnels:
   springboot:
     proto: http
     addr: host.docker.internal:8181
+

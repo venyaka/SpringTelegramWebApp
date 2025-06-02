@@ -12,6 +12,8 @@ services:
       - ./ngrok.yml:/etc/ngrok.yml
     ports:
       - "4040:4040"
+    environment:
+      NGROK_TOKEN: ${NGROK_TOKEN}
 #    network_mode: host
 
   backend:
